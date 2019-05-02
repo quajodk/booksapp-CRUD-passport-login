@@ -1,0 +1,80 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div  class="container d-flex justify-content-between">
+        <a class="navbar-brand font-weight-bold" href="/">Book App</a>
+        
+        <div> 
+            <% if (user) { %>
+                <span class="font-weight-bold text-white"><i class="fas fa-user-circle font-weight-bold fa-lg"></i>  <%= user.name %></span>
+                <a class="btn btn-outline-primary ml-3" href="/user/logout">Logout</a>
+            <% } else { %>
+            <a class="btn btn-outline-primary" href="/user/login">Login</a>
+            <a class="btn btn-outline-secondary" href="/user/register">Sign Up</a>
+            <% } %>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron jumbotron-fluid text-center">
+    <div class="container">
+        <h1 class="display-3">Library App</h1>
+        
+        <p class="lead">
+            A simple Library App to add and delete books... Enjoy coding
+        </p>
+
+        <form action="/" method="GET" class="mt-5">
+            <div class="input-group">
+               <input class="form-control border-right-0" type="text" name="search" placeholder="Search using book title or book genre.. ">
+               <div class="input-group-append">
+                    <div class="input-group-text bg-white border-left-0">
+                        <i class="fas fa-search"></i>
+                    </div>               
+               </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+    <% if (user) { %>
+        <div class="text-center mb-4">
+            <a href="/create" class="btn btn-primary"><i class="fas fa-plus"></i> Click to add book</a>
+        </div>
+    <% } %>
+    <div class="text-center">
+        <% include partials/messages %>
+    </div>
+    <div class="row">
+        <% if (books.length > 0) { %>
+            <% books.forEach( function (book) { %>
+                <div class="col-sm-6">
+                    <div class="card border-dark mb-3">
+                    <div class="card-body d-flex flex-row">
+                        <div>
+                           <img src="/img/default.jpg" height="100px" width="100px" class="rounded float-left" alt="default image"> 
+                        </div>
+                        <div class="ml-3">
+                            <h5 class="card-title"><%= book.title %></h5>
+                            <div class="d-flex flex-row">
+                                <p class="card-text"><b class="mr-2 text-primary">Author:</b> <%= book.author %></p>
+                                <span class="ml-3"><b class="mr-2 text-muted">Genre:</b> <%= book.genre %></span>
+                            </div>
+                            <p class="card-text"><small><%= book.description != '' ? book.description : '' %></small></p>
+                            <a href="/<%= book._id %>"><i class="fas fa-eye fa-lg mr-2"></i></a>
+                            <a href="/delete/<%= book._id %>" onclick="return confirm('Are you sure to delete this record ?');"><i class="fas fa-trash fa-lg"></i></a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+                <div class="card w-100">
+                <div class="card-body text-center">
+                    <p class="card-text">No book(s) have been added yet..</p>
+                    <a href="/create" class="btn btn-primary"><i class="fas fa-plus"></i> Click to add book</a>
+                </div>
+                </div>
+        <% } %>
+
+    </div>    
+</div>

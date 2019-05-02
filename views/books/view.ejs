@@ -1,0 +1,19 @@
+<% include ../partials/navbar %>
+
+<div class="container">
+    <div class="col-sm-8 mx-auto mt-5">
+        <div class="card mb-3">
+        <img src="/img/default.jpg" class="card-img-top" alt="default image">
+        <div class="card-body">
+            <h5 class="card-title"><%= book.title %></h5>
+            <p class="card-text"><%= book.description != '' ? book.description : '' %></p>
+            <div class="d-flex flex-row">
+                <p class="card-text mr-3"><small class="text-muted"><b class="text-info">Author:</b>  <%= book.author %></small></p>
+                <p class="card-text mr-3"><small class="text-muted"><b class="text-info">Genre:</b>  <%= book.genre %></small></p>
+            </div>
+            <a class="btn btn-sm btn-outline-secondary" href="update/<%= book._id %>"><i class="fas fa-pencil-alt"></i> Edit</a>
+            <a class="btn btn-sm btn-outline-primary" href="/"><i class="fas fa-list"></i> Back</a>    
+        </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div  class="container d-flex justify-content-between">
+        <a class="navbar-brand font-weight-bold" href="/">Book App</a>
+        
+        <div> 
+            <% if (user) { %>
+                <span class="font-weight-bold text-white"><i class="fas fa-user-circle font-weight-bold fa-lg"></i>  <%= user.name %></span>
+                <a class="btn btn-outline-primary ml-3" href="/user/logout">Logout</a>
+            <% } else { %>
+            <a class="btn btn-outline-primary" href="/user/login">Login</a>
+            <a class="btn btn-outline-secondary" href="/user/register">Sign Up</a>
+            <% } %>
+        </div>
+    </div>
+</nav>
